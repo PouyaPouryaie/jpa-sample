@@ -1,8 +1,7 @@
-package ir.bigz.spring.jpasample.entity;
+package ir.bigz.spring.jpasample.basic;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "product")

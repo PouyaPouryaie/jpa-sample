@@ -1,11 +1,6 @@
-package ir.bigz.spring.jpasample.controller;
+package ir.bigz.spring.jpasample.basic;
 
-import ir.bigz.spring.jpasample.dao.ProductDao;
-import ir.bigz.spring.jpasample.entity.Product;
-import ir.bigz.spring.jpasample.service.ProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

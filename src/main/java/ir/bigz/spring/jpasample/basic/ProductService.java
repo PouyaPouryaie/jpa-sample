@@ -1,7 +1,5 @@
-package ir.bigz.spring.jpasample.service;
+package ir.bigz.spring.jpasample.basic;
 
-import ir.bigz.spring.jpasample.dao.ProductDao;
-import ir.bigz.spring.jpasample.entity.Product;
 import jakarta.persistence.EntityManager;
 import org.hibernate.engine.spi.EntityEntry;
 import org.hibernate.engine.spi.EntityKey;
