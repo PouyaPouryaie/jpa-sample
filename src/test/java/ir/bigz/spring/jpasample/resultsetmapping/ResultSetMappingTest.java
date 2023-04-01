@@ -39,7 +39,7 @@ public class ResultSetMappingTest {
 
     @BeforeAll
     void setUp(){
-        authorService = new AuthorService(entityManager, authorRepository);
+        authorService = new AuthorService(entityManager);
         authors = generateAuthorData().stream()
                 .map(author -> Author.builder()
                 .firstName(author.getFirstName())

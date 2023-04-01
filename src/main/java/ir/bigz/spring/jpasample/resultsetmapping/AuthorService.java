@@ -11,13 +11,13 @@ public class AuthorService {
 
     private final EntityManager entityManager;
 
-    private final AuthorRepository authorRepository;
-
-    public AuthorService(EntityManager entityManager, AuthorRepository authorRepository) {
+    public AuthorService(EntityManager entityManager) {
         this.entityManager = entityManager;
-        this.authorRepository = authorRepository;
     }
 
+    /**
+     * Create a native query and get the result as arrays of objects and manually map values into the object
+     */
     public List<AuthorDto> getResultSetFromEntityManager() {
 
         List<Object[]> results = this.entityManager.createNativeQuery
@@ -33,6 +33,10 @@ public class AuthorService {
         }).toList();
     }
 
+    /**
+     * Create a native query and get the result and use Jpa to map data into object,
+     * Also in this way you have to return all field of table
+     */
     public List<AuthorDto> getResultWithDefaultMapping() {
 
         List<Author> results = this.entityManager.createNativeQuery
@@ -47,6 +51,9 @@ public class AuthorService {
         ).collect(Collectors.toList());
     }
 
+    /**
+     * Create a native query and use SqlResultSetMapping feature to project selective fields of table into object
+     */
     public List<AuthorDto> getResultWithCustomMapping() {
 
         List<Author> results = this.entityManager.createNativeQuery
@@ -62,7 +69,7 @@ public class AuthorService {
     }
 
     /**
-     * this method show how we can extract complex entity with have relation between them,
+     * this method show how we can extract complex entity with have relation between them by using EntityResult Mapping
      */
     public List<AuthorDto> getComplexResultWithCustomMapping() {
 
@@ -104,8 +111,8 @@ public class AuthorService {
         List<AuthorDto> collect = results.stream().map((record) -> {
             Author author = (Author) record[0];
             long bookCount = (Long) record[1];
-            System.out.println("Author: ID [" + author.getId() + "] firstName [" + author.getFirstName() +
-                    "] lastName [" + author.getLastName() + "] number of books [" + bookCount + "]");
+            System.out.println("Author: Id: " + author.getId() + ", First Name: " + author.getFirstName() +
+                    ", Last Name: " + author.getLastName() + ", Number of Books: " + bookCount);
             return AuthorDto.builder()
                     .authorId(author.getId())
                     .firstName(author.getFirstName())
