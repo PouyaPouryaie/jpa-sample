@@ -93,6 +93,27 @@ public class ResultSetMappingTest {
         Assertions.assertTrue(result.size() > 0);
     }
 
+    @Test
+    @Rollback(value = false)
+    public void get_book_view_by_using_constructor_as_a_map(){
+
+        List<BookView> result = authorService.getResultAndMapToValueObjectByConstructor();
+
+        //then
+        Assertions.assertTrue(result.size() > 0);
+        Assertions.assertTrue(!result.get(0).getAuthorName().equals(""));
+    }
+
+    @Test
+    @Rollback(value = false)
+    public void get_author_with_book_count(){
+
+        List<AuthorDto> result = authorService.getComplexResultWithAdditionalColumn();
+
+        //then
+        Assertions.assertTrue(result.size() > 0);
+    }
+
     List<Author> generateAuthorData(){
         String[] firstName = {"jack", "paul", "david", "pouya"};
         String[] lastName = {"jonson", "goto", "anderson", "pouryaei"};
